@@ -20,18 +20,14 @@ exports.signup = (req, res) => {
                 return Promise.reject("email-exists");
             }
         }).then(() => {
-
-            const salt = bcrypt.genSaltSync(saltRounds);
-            const hash = bcrypt.hashSync(req.body.password, salt);
-
+            const hash = bcrypt.hashSync(req.body.password, 8);
             return datastore.save({
                 key: datastore.key("User"),
                 data: {
                     email: req.body.email,
                     password: hash,
                     lastName: req.body.lastName,
-                    firstName: req.body.firstName,
-                    salt: salt
+                    firstName: req.body.firstName
                 }
             });
         }).then(() => {
@@ -56,10 +52,7 @@ exports.login = (req,res) =>{
             else
                 return Promise.reject('User not Present');
         }).then((user) => {
-            console.log(user);
-            const salt = user.salt;
-            const hash = bcrypt.hashSync(req.body.password,salt);
-            if(bcrypt.compareSync(user.password,hash)) {
+            if(bcrypt.compareSync(req.body.password, user.password)) {
                 return;
             } else {
                 return Promise.reject("Wrong credentials");
