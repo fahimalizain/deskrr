@@ -27,7 +27,8 @@ exports.signup = (req, res) => {
                     email: req.body.email,
                     password: hash,
                     lastName: req.body.lastName,
-                    firstName: req.body.firstName
+                    firstName: req.body.firstName,
+                  	teams: req.body.teams
                 }
             });
         }).then(() => {
@@ -46,6 +47,7 @@ exports.login = (req,res) =>{
     const query = datastore.createQuery('User').filter('email', req.body.email);
     datastore.runQuery(query)
         .then((data) => {
+            // [[{},{},{}],{Query details}]
             if (data && data.length > 0 && data[0].length > 0){
                 return data[0][0];
             }
@@ -62,4 +64,4 @@ exports.login = (req,res) =>{
         }).catch((e) => {
             res.status(400).send(e || "Failed login");
         })
-}
+} 
