@@ -6,6 +6,6 @@ using namespace std;
 
 int main(int argc, char** argv) {
     cout << "Hello";
-    WinSockHandler winSock(3000);
+    WinSocketHandler *h = new WinSocketHandler(3000);
     return 0;
 }

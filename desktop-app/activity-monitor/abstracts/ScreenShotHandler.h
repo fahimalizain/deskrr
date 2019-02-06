@@ -3,7 +3,8 @@
 
 class ScreenShotHandler {
     public:
-        int saveScreenBitmapToFile();
+        void * GetScreenShot();
+        int SaveScreenShotToFile();
 };
 
 #endif

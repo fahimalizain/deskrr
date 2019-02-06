@@ -1,19 +1,8 @@
 #include <stdint.h>
-
-class SocketHandler {
-    private:
-        uint16_t currentPort;
-    public:
-        SocketHandler(uint16_t);
-
-        /**
-         * Starts listening on the port provided
-        */
-        int startListening();
-};
+#include "SocketHandler.h"
 
 SocketHandler::SocketHandler(uint16_t port) {
-    currentPort = port;
+    this->port = port;
 }
 
 int SocketHandler::startListening() {

@@ -1,5 +1,5 @@
-#ifndef SOCKETBASE_H
-#define SOCKETBASE_H
+#ifndef DESKR_SOCKETBASE_H
+#define DESKR_SOCKETBASE_H
 
 #include <stdint.h>
 
@@ -7,7 +7,7 @@ class SocketHandler {
     private:
         uint16_t port;
     public:
-        SocketHandler(int);
+        SocketHandler(uint16_t);
         int startListening();
 };
 

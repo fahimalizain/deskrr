@@ -1,4 +1,2 @@
-class ScreenShotHandler {
-    public:
-        int saveScreenBitmapToFile();
-};
+#include "ScreenShotHandler.h"
+
