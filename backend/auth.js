@@ -3,6 +3,9 @@ const datastore = require("@google-cloud/datastore")({
 })
 const bcrypt = require('bcrypt');
 const saltRounds = 8;
+const utils = require('./utils');
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 exports.signup = (req, res) => {
 
@@ -55,11 +58,18 @@ exports.login = (req, res) => {
         return Promise.reject('User not Present');
     }).then((user) => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        return;
+        return user;
       } else {
         return Promise.reject("Wrong credentials");
       }
-    }).then(() => {
+    }).then((user) => {
+      var payload = {
+        email: user.email,
+        time: utils.getTimestamp()
+      };
+      var privateKEY  = fs.readFileSync('./private.key', 'utf8');
+      var token = jwt.sign(payload, privateKEY);
+      res.set('Token',token);
       res.send("OK");
     }).catch((e) => {
       res.status(400).send(e || "Failed login");
