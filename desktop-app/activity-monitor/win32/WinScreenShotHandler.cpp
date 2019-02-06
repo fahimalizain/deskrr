@@ -28,3 +28,7 @@ void * WinScreenShotHandler::GetScreenShot() {
     DeleteDC(hScreenDC);
     return hBitmap;
 }
+
+int WinScreenShotHandler::SaveScreenShotToFile(HBITMAP hBitmap) {
+    return 0;
+}

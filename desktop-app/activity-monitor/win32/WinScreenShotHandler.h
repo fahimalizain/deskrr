@@ -7,7 +7,7 @@
 class WinScreenShotHandler: public ScreenShotHandler {
     public:
         void * GetScreenShot();
-        int SaveScreenShotToFile();
+        int SaveScreenShotToFile(HBITMAP);
 };
 
 #endif

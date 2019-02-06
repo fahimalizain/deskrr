@@ -4,7 +4,7 @@
 class ScreenShotHandler {
     public:
         void * GetScreenShot();
-        int SaveScreenShotToFile();
+        int SaveScreenShotToFile(void *);
 };
 
 #endif

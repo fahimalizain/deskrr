@@ -6,5 +6,5 @@ SocketHandler::SocketHandler(uint16_t port) {
 }
 
 int SocketHandler::startListening() {
-    
+    return 0;
 }
