@@ -46,12 +46,24 @@
 ```
 
 ## Activity Models <a name="activity"></a>
-### Time:
+### Activity log:
 ```json
 {
-    date: "",
-    duration: "",
-    time-stamps: [],
+    logId : "",
+    timestamp : "",
+    user : "",
+}
+
+```
+### Activity data log:
+```json
+{
+    logId : "",
+    activityId : "",
+    title: "",
+    activityType : "process | website | screenhot |sysInteraction ",
+    timespent: "",
+    reference: "process.exe | screenshot_url | website urls",
 }
 ```
-
+###
