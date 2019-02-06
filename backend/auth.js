@@ -6,6 +6,8 @@ const saltRounds = 8;
 const utils = require('./utils');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const privateKEY  = fs.readFileSync('./private.key', 'utf8');
+const checkAuth = utils.checkAuth;
 
 exports.signup = (req, res) => {
 
@@ -67,7 +69,6 @@ exports.login = (req, res) => {
         email: user.email,
         time: utils.getTimestamp()
       };
-      var privateKEY  = fs.readFileSync('./private.key', 'utf8');
       var token = jwt.sign(payload, privateKEY);
       res.set('Token',token);
       res.send("OK");
@@ -76,32 +77,6 @@ exports.login = (req, res) => {
     })
 }
 
-exports.checkAuth = (fn) => {
-  return function (req, res) {
-    if (!req.headers || !req.headers.authorization) {
-      res.status(401).send('No authorization token found.');
-      return;
-    }
-    // expect authorization header to be
-    // Bearer xxx-token-xxx
-    const parts = req.headers.authorization.split(' ');
-    if (parts.length != 2) {
-      res.status(401).send('Bad credential format.');
-      return;
-    }
-    const scheme = parts[0];
-    const credentials = parts[1];
-
-    if (!/^Bearer$/i.test(scheme)) {
-      res.status(401).send('Bad credential format.');
-      return;
-    }
-    verifyToken(credentials, function (err) {
-      if (err) {
-        res.status(401).send('Invalid token');
-        return;
-      }
-      fn(req, res);
-    });
-  }
-}
+exports.helloWorld = checkAuth((req, res) => {
+  res.send("Hiii");
+})
