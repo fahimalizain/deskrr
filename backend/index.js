@@ -1,6 +1,7 @@
 const datastore = require("@google-cloud/datastore")({
     projectId: "deskrr"
 })
+
 const auth = require("./auth.js");
 Object.assign(exports, auth);
 
