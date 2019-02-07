@@ -5,8 +5,6 @@ const bcrypt = require('bcrypt');
 const saltRounds = 8;
 const utils = require('./utils');
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const privateKEY  = fs.readFileSync('./private.key', 'utf8');
 const checkAuth = utils.checkAuth;
 
 exports.signup = (req, res) => {
@@ -69,7 +67,7 @@ exports.login = (req, res) => {
         email: user.email,
         time: utils.getTimestamp()
       };
-      var token = jwt.sign(payload, privateKEY);
+      var token = jwt.sign(payload, utils.getPrivateKey());
       res.set('Token',token);
       res.send("OK");
     }).catch((e) => {

@@ -1,3 +1,9 @@
+const jwt = require('jsonwebtoken');
+const fs = require('fs');
+const privateKEY  = fs.readFileSync('./private.key', 'utf8');
+
+exports.getPrivateKey = () => { return privateKEY; }
+
 exports.getTimestamp = (req,res) => {
     return Date.now() / 1000;
 }
