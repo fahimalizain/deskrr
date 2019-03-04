@@ -6,7 +6,10 @@
     * [Roles](#roles)
     * [Organization](#org)
     * [Team](#team)
-* [Activity Models](#activity)
+- [Activity Models](#activity-models)
+    - [Activity](#activity)
+    - [Activity Log](#activity-log)
+    - [Activity Log Data](#activity-log-data)
 
 
 ## Core Models <a name="coremodels"></a>
@@ -45,25 +48,27 @@
 }
 ```
 
-## Activity Models <a name="activity"></a>
+## Activity Models
+### Activity Type
+An entity that user is linked with at any point of time. Eg: Idle, Google Chrome etc.
+
+```js
+{
+    activityId: "12d13rc",
+    title: "Google Chrome",
+    type: "Process", // Process | Website | Idle
+    reference: "chrome.exe", // exe, website_url
+}
+```
+
 ### Activity log:
-```json
+```js
 {
     logId : "",
     timestamp : "",
     user : "",
+    activityId: "",
+    timespent: "" // seconds
 }
 
 ```
-### Activity data log:
-```json
-{
-    logId : "",
-    activityId : "",
-    title: "",
-    activityType : "process | website | screenhot |sysInteraction ",
-    timespent: "",
-    reference: "process.exe | screenshot_url | website urls",
-}
-```
-###
